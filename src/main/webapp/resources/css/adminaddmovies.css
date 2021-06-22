@@ -1,0 +1,80 @@
+*{
+	box-sizing: border-box;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+      background: rgb(152 193 255); 
+}
+h4{
+	padding-top:7px;
+}
+.header{
+  /*   position: fixed; */
+    top: 0;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+.header a {
+    text-decoration: none;
+    padding: 14px 23px;
+    font-size: 19px;
+    text-align: center;
+    display: block;
+    float: left;
+    color: white;
+}
+.leftout{
+	float:right;
+	    margin: auto 21px;
+}
+.header a:hover{
+     background: #5294e2;
+}
+.addmoviemanual{
+    text-align: center;
+    position: relative;
+    font-size: 40px;
+    /* border: 2px solid red; */
+ /*    top: 19px; */
+    width: 100%;
+    background-color: wheat;
+}
+.container b:hover{
+	background-color:#5294e2;
+	color:#eeeeec;
+}
+#myVideo {
+    
+    z-index: -1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+b{
+	color: rgb(255 202 157);
+	font-size: 29px;
+	color: rgb(0 0 0);
+}
+.container {
+    position: relative;
+    left: 230px;
+top: 107px;
+/* border: 3px solid red; */
+width: 50%;
+height: 198px;
+    width: 38%;
+    height: 99%;
+    background-color: rgb(255 255 255 / 73%);
+    left: 42px;
+}
+input{
+	    width: 89%;
+}
+ 

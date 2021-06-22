@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/bookseat2.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="knockout-3.5.1.js"></script>
+    <title> User Booking</title>
+  </head>
+  <body>
+  <video autoplay muted loop id="myVideo">
+        <source src="/resources/css/AbsoluteOddballGoat.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+  </video>
+    <div class="header">
+        <a href="userHome">Home</a>
+        <a href="usermovies">Movies</a>
+        <a href="userbook">Booking</a>
+        <a href="#contact">Contact</a>
+        <a href="userticket">Show Ticket</a>
+        <div class="leftout"> <a href="logout">Logout</a></div>
+    </div>
+    <form class="center">
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Enter Username" name="username" required>
+        
+            <label for="mobilenumber"><b>Mobile Number</b></label>
+            <input type="text" id="phonenumber" placeholder="Enter Mobile Number" name="mobilenumber" required>
+                <label for="moviename"><b>Choose a Movie:</b></label>
+       <select name="moviename" id="moviename" data-bind="click:movieshow,options:userdetails,optionsText:'moviename',optionsValue:'id'">
+                 </select> <br> <br>
+            <label for="theatrename"><b>Choose a Theatre:</b></label>
+         <!--    <select name="theatrename" id="theatre" data-bind="options:theatredetails,optionsText:'theatrename'"> </select> -->
+      		  <span id="theatrename" style="font-size: 22px;"></span> <br> <br>
+            <label for="screen"><b>Choose a Screen:</b></label>
+         <!--    <select name="screen" id="screen" data-bind="options:theatredetails,optionsText:'screen'"> 	</select> <br> <br> -->
+             <span id="screen" style="font-size: 22px;"></span> <br> <br>
+      	
+        
+            <label for="showtimemovie"><b>Choose a showtime:</b></label>
+             <span id="showtimemovie" style="font-size: 22px;"><b ></b></span><b style="font-size: x-large;">  AM</b> <br> <br>
+     <!--            <select name="showtime" data-bind="options:userdetails,optionsText:'showtime'" id="showtime">     </select> <br> <br>-->
+        
+            <label for="seat"><b>Choose a Seat:</b></label>
+            <table id="seatTable" class="table">
+        <thead>
+          <tr>
+            <th scope="col">A</th>
+            <th scope="col">B</th>
+            <th scope="col">C</th>
+        
+          </tr>
+        </thead>
+        <tbody class="seatbody">
+          <tr>
+           
+            <td>A1</td>
+            <td>B1</td>
+            <td>C1</td>
+          </tr>
+          <tr>
+      
+            <td>A2</td>
+            <td>B2</td>
+            <td>C2</td>
+          </tr>
+          <tr>
+           
+            <td>A3</td>
+            <td>B3</td>
+            <td>C3</td>
+          </tr>
+          <tr>
+     
+            <td>A4</td>
+            <td>B4</td>
+            <td>C4</td>
+          </tr>
+          <tr>
+         
+            <td>A5</td>
+            <td>B5</td>
+            <td>C5</td>
+          </tr>
+        </tbody>
+      </table>
+       <button  type="button" id="countprice">Price</button> 
+      <label for="showtime"><b>Ticket per Price :</b></label> 
+       <span id="mainprice"></span> <br> <br>
+       <label for="showtime"><b>GST :</b></label>
+       <span>18%</span> <br> <br>
+       <label for="showtime"><b>Total Price :</b></label>
+       <span id="totalprice"></span> <br> <br>
+            
+            <button type="button" id="addticket">Book</button> 
+    
+        </div>
+          </form>
+   <!--  <div class="footer"><h4>All Right Reserved 2021 @Moviemania</h4></div> -->
+    <script src="/resources/js/bookingseat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<script>
+	   function vm(){
+       	var self=this;
+           self.userdetails=ko.observableArray([]);
+           self.theatredetails=ko.observableArray([]);
+         	
+     
+           // this.Count=ko.computed(function(){
+           //     return this.Accounts().length;
+           // },this)
+           $.getJSON("http://localhost:8080/showmovies",function(data){
+           	console.log(data);
+           	 self.userdetails(data);
+           	var jsonData = ko.toJSON(data);
+           });
+           $.getJSON("http://localhost:8080/showtheatre",function(data1){
+              	console.log(data1);
+              	self.theatredetails(data1);
+              	var jsonData1 = ko.toJSON(data1);
+              });
+           self.movieshow=function(){
+        	   let val1=$("#moviename").val();
+        	   console.log(val1);
+        	   let val2=self.userdetails();
+        	   let val3=self.theatredetails();
+        	   val2.forEach(function(v){
+        		   if(v.id==val1){
+        			   $("#screen").text(v.screen);
+        			   $("#theatrename").text(v.theatrename);
+        			   $("#showtimemovie").text(v.showtimemovie);
+        			   console.log(v.screen);
+        			  
+        		   }
+        	   });
+        	   val2.forEach(function(t){
+        		   if(t.id==val1){
+        			   $("#theatrename").text(t.theatrename);
+        		   }
+        	   })
+        	   
+           };
+           
+       }
+       ko.applyBindings(new vm());	
+	</script>
+	<!-- <script src="/resources/js/seatbook.js"></script> -->
+  </body>
+</html>

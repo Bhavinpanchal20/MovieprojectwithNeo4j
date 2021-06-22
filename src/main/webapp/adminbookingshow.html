@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/adminbookingshow.css">
+    <title>Admin Show Booking</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="knockout-3.5.1.js"></script>
+  </head>
+  <body>
+  <video autoplay muted loop id="myVideo">
+        <source src="/resources/css/AbsoluteOddballGoat.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="header">
+        <a href="adminHome">Home</a>
+        <a href="admintheatre">Theatre</a>
+        <a href="adminaddtheatre">Add Theatre</a>
+        <a href="addmovie">Add Movies</a>
+        <a href="managemovies">Manage Movies</a>
+        <a href="showbooking">Show Booking</a>
+        <div class="leftout"> <a href="logout">Logout</a></div>
+    </div>
+    
+    <div class="tableshow">
+        <table class="table table-hover"  style="background-color: rgb(245 245 245 / 94%);">
+          <thead>
+            <tr>
+              <th scope="row">ID</th>
+              <th scope="row">Name</th>
+              <th scope="row">Phone No.</th>
+              <th scope="row">Theatre</th>
+              <th scope="row">Screen</th>
+              <th scope="row">Movie</th>
+              <th scope="row">Show time</th>
+              <th scope="row">Seat No</th>
+              <th scope="row">Price</th>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach:userdetails">
+            <tr>
+              <th scope="col" data-bind="text:($index()+1)"></th>
+              <td data-bind="text:username"></td>
+              <td data-bind="text:phoneno"></td>
+              <td data-bind="text:theatrename"></td>
+              <td data-bind="text:screen"></td>
+              <td data-bind="text:moviename"></td>
+              <td data-bind="text:showtime"> <b>AM</b></td>
+              <td class="input1" data-bind="text:$data.seatid"></td>
+              <td data-bind="text:price"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>   
+    <!--   <div class="collection">
+          <h2>Total Earning: </h2> 
+      </div>   --> 
+    <div class="footer"><h4>All Right Reserved 2021 @Moviemania</h4></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+ 	  <script>
+        
+     function vm(){
+        	var self=this;
+            self.userdetails=ko.observableArray([]);
+            self.temparray=ko.observableArray([]);
+            // this.Count=ko.computed(function(){
+            //     return this.Accounts().length;
+            // },this)
+            $.getJSON("http://localhost:8080/showallbooking",function(data){
+            	console.log(data);
+            	 self.userdetails(data);
+            });
+        }
+        ko.applyBindings(new vm());
+    </script> 
+    <script src="/resources/js/totalprice.js"></script>
+ </body>
+</html>

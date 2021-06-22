@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/adminaddmovies.css">
+    <script src="jquery-3.6.0.min.js"></script>
+	 <script src="knockout-3.5.1.js"></script>
+    <title>Admin Add Movies</title>
+  </head>
+  <body>
+  	<video autoplay muted loop id="myVideo">
+        <source src="/resources/css/AbsoluteOddballGoat.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+     <div class="header">
+        <a href="adminHome">Home</a>
+        <a href="admintheatre">Theatre</a>
+        <a href="adminaddtheatre">Add Theatre</a>
+        <a href="addmovie">Add Movies</a>
+        <a href="managemovies">Manage Movies</a>
+        <a href="showbooking">Show Booking</a>
+        <div class="leftout"> <a href="logout">Logout</a></div>
+ 
+    </div>
+    <div class="addmoviemanual">
+       Add Movie 
+    </div>
+    <!-- <form class="center " >
+        <div class="container">
+     
+            <label for="moviename"><b>Enter Movie </b></label>
+            <input type="text" id="moviename" placeholder="Enter Movie" name="moviename" required>
+           	<br> <br>
+           	<label for="duration"><b>Enter Duration </b></label>
+            <input type="number" id="duration" placeholder="Enter Duration" name="duration"  step="0.01" required> 
+            <br> <br>
+            <label for="showtime"><b>Enter Showtime </b></label>
+            <input type="number" id="showtime" placeholder="Enter Showtime" name="showtime" step="0.01" required>
+            <br> <br>
+            <label for="dateinsert"><b>Enter Date</b></label>
+            <input type="date" id="dateinsert" placeholder="Enter date" name="dateinsert"  required>
+            <br> <br>
+            <button type="button" id="add-movie">Submit</button>
+    
+        </div>
+          </form> -->  
+      <form class="center">
+       	<div class="container">
+       	 	
+            <label for="moviename"><b>Enter Movie :   </b></label>
+            <input type="text" placeholder="Enter Movie" id="moviename" name="moviename" required>  <br> <br>
+             
+            <label for="theatrename"><b>Enter Theatre :</b></label>
+            <select data-bind="click:selecttheatre, options:userdetails,optionsText:'theatrename',optionsValue:'id'" id="theatrename" name="theatrename" required></select> <br> <br> 
+          
+            <label for="duration"><b>Enter duration :</b></label>
+            <input type="number" id="duration" name="duration" step="0.01"> <br> <br>
+        
+            <!-- <label for="uname"><b>Enter Movie </b></label>
+            <input type="text" placeholder="Enter Movie" name="uname" required>  <br> <br>  -->
+         
+            <label for="screen"><b>Total Screen :</b></label>
+        <!--  <select data-bind="options:userdetails,optionsText:'screen',optionsValue:'screen'" checked="checked" id="screen" name="screen" required></select> <br> <br>  -->
+           <span id="screen" style="font-size: 22px;"></span> <br> <br>
+<!--             <label for="screen"><b>Enter Screen :</b></label>
+            <select data-bind="options:userdetails,optionsText:'screen',optionsValue:'screen'"  id="screen" name="screen" required></select> <br> <br> -->
+       	
+           	<label for="screen2"><b>Enter Screen :</b></label>
+           	<input name="screen2" id="screen2" type="number">  <br> <br> 
+           
+            <label for="thendate"><b>Enter the date :</b></label>
+            <input type="date" id="thendate" name="thendate"> <br> <br>
+           
+            
+            <label for="showtime"><b>Enter a Showtime :</b></label> 
+            <input type="number" id="showtime" name="showtime" step="0.01"> <br> <br>
+         
+       <!--      <button type="submit">Submit</button> -->        
+    		<button  type="button" id="add-movie">Submit</button> 
+        </div>
+      </form>      
+    <div class="footer"><h4>All Right Reserved 2021 @Moviemania</h4></div>
+    <script src="/resources/js/adminaddmovies.js"></script>
+    <script>
+    function vm(){
+    	var self=this;
+        self.userdetails=ko.observableArray([]);
+        self.showmoviesdata=ko.observableArray([]);
+        // this.Count=ko.computed(function(){
+        //     return this.Accounts().length;
+        // },this)
+         $.getJSON("http://localhost:8080/showtheatre",function(data){
+        	console.log(data);
+        	 self.userdetails(data);
+        	var jsonData = ko.toJSON(data);
+        	
+        }); 
+         $.getJSON("http://localhost:8080/showmovies",function(data1){
+         	console.log(data1);
+         	 self.showmoviesdata(data1);
+         	var jsonData1 = ko.toJSON(data1);
+         	
+         }); 
+         self.selecttheatre=function(){
+     	
+     		let val1=$("#theatrename").val();
+     		console.log(val1);
+     		let val2= self.userdetails();
+     		val2.forEach(function(v){
+     			if(v.id==val1){
+     				$("#screen").text(v.screen);
+     				console.log(v.screen);
+     			}
+     		});
+     		let val3=self.showmoviesdata();
+     		val3.forEach(function(v2){
+     			if(v2.id==val3){
+     				$("#moviename").text(v2.moviename);
+     			}
+     		})
+     		
+     	};
+     
+     	 
+        
+    }
+ko.applyBindings(new vm());
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+ </body>
+</html>

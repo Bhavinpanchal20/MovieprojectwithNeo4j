@@ -1,0 +1,48 @@
+.header{
+    display:flex;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+  background-color: rgb(162 225 255 / 28%);
+}
+.header a {
+    text-decoration: none;
+    display: block;
+    text-decoration: none;
+    padding: 24px 101px;
+    font-size: 35px;
+    text-align: center;
+    display: block;
+    float: left;
+    color: rgb(11 16 58);
+}
+h1{
+	font-size: calc(0.375rem + 1.5vw);
+}
+.header a:hover{
+     background: #f5bd44;
+}
+.leftout{
+	float:right;
+	    margin: auto 21px;
+}
+img{
+    width: 34px;
+    width: 147px;
+    height: 112px;
+}
+.cards {
+   
+    display: inline-block;
+    width: 19%;
+    /* border: 2px solid red; */
+    margin-left: 108px;
+    margin: 65px;
+    background-color: rgb(192, 201, 255);
+    background-color: rgb(192 201 255 / 87%);
+    border-radius: 9px;
+}
+.title_card{
+    text-align: center;
+}

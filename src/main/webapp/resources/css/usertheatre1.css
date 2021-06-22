@@ -1,0 +1,94 @@
+*{
+	box-sizing: border-box;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: rgb(152 193 255);
+}
+h4{
+	padding-top:7px;
+}
+h1{
+	font-size: calc(0.375rem + 1.5vw);
+}
+.header{
+  /*   position: fixed; */
+    top: 0;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+#myVideo {
+    
+    z-index: -1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+.leftout{
+	float:right;
+	    margin: auto 21px;
+}
+.header a {
+    text-decoration: none;
+    padding: 14px 23px;
+    font-size: 19px;
+    text-align: center;
+    display: block;
+    float: left;
+    color: white;
+}
+.header a:hover{
+     background: #5294e2;
+}
+.theatre{
+    text-align: center;
+    position: relative;
+    font-size: 40px;
+    /* border: 2px solid red; */
+  /*   top: 50px; */
+    width: 100%;
+    background-color: wheat;
+}
+.cards {
+   
+    display: inline-block;
+    width: 19%;
+    /* border: 2px solid red; */
+    margin-left: 108px;
+    margin: 65px;
+    background-color: rgb(192, 201, 255);
+    border-radius: 7px;
+     background-color: rgb(255 255 255 / 86%);
+      padding:5px;
+}
+.title_card{
+    text-align: center;
+}
+.btn1 {
+	    text-align: unset;
+    color: rgb(255 255 255);
+    background-color: rgb(13 110 253);
+    border-color: rgb(13 110 253);
+    font-size: 0.875em;
+    display: block;
+    left: -60px;
+    height: 36px;
+    /* margin-top: 35px; */
+    width: 56%;
+    font-size: calc(0.375rem + 0.5vw);
+    margin: auto auto;
+    color: rgb(255 255 255);
+    background-color: rgb(30 144 255);
+    /* color: rgb(255 255 255); */
+    background-color: rgb(13 110 253);
+    border-color: rgb(13 110 253);
+    border-radius: 9px;
+    text-align: enter;
+}

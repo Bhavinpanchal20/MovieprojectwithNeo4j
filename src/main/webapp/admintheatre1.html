@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/admintheatre1.css">
+     <script src="jquery-3.6.0.min.js"></script>
+    <script src="knockout-3.5.1.js"></script>
+    <!-- <script>
+    	$(document).ready(function(){
+    		$("#submitclick").click(function(){
+        	   alert("alert this");
+        	 $.ajax({
+         	    type : "DELETE",
+         	    url : "http://localhost:8080/removetheatre/"+name,
+         	    contentType: "application/json",
+         	  
+         	    success: function (data) {   
+         	    	alert("Deleted succesfully");
+         	    	 /* self.theatredetails(data);
+         	           console.log(data); */                
+         	    },
+         	    error: function () {
+         	        console.log("errors");
+         	    }
+         });
+    });
+   });
+    </script> -->
+    <title>Admin Movie Theatre</title>
+  </head>
+  <body>
+  <video autoplay muted loop id="myVideo">
+        <source src="/resources/css/AbsoluteOddballGoat.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+     <div class="header">
+        <a href="adminHome">Home</a>
+        <a href="admintheatre">Theatre</a>
+        <a href="adminaddtheatre">Add Theatre</a>
+        <a href="addmovie">Add Movies</a>
+        <a href="managemovies">Manage Movies</a>
+        <a href="showbooking">Show Booking</a>
+        <div class="leftout"> <a href="logout">Logout</a></div>
+    </div>
+    <div class="theatre">
+        Movie Theatre
+    </div>
+    <form action="/addmovie">
+    <div class="main_card" data-bind="foreach:theatredetails" style="text-align:center;">
+        <div class="cards" >
+            <div class="title_card">
+                   <h1  id="theatrename" data-bind="text:theatrename"></h1>
+                <div class="des">
+                    <p id="screen">Screen <b data-bind="text:screen"></b></p>
+                    <button id="Add Movies" class="btn1">Add Movies</button>
+                     <!-- <button id="deletethis" data-bind="click:$parent.deletetheatre" class="btn btn-primary">Delete</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+	</form>
+    <div class="footer"><h4>All Right Reserved 2021 @Moviemania</h4></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<!-- <script>
+	 function vm(){
+		 
+     	var self=this;
+         self.theatredetails=ko.observableArray([]);
+         // this.Count=ko.computed(function(){
+         //     return this.Accounts().length;
+         // },this)
+         $.getJSON("http://localhost:8080/showtheatre",function(data){
+         	  console.log(data);  
+         	 self.theatredetails(data);
+         	 var name;
+         	 var i;
+         	 for(i=0;i<data.length;i++)
+         	 {
+         		 name=data[i].theatrename;
+         		 console.log(name);
+         	 }
+        /*  	 var name2=data[0].theatrename;
+        	console.log(name2) 
+         	 var tname=$("#theatrename").val();  */
+         });
+   		
+	 var tname=$("#theatrename").val();
+	 console.log(tname);
+	 
+    	 $("#deletethis").click(function(){
+    		 var tname=$("#theatrename").text();
+    		 console.log(tname);
+    		 $.ajax({
+    			 	url:"http://localhost:8080/removetheatre"+tname,
+    	            type: 'DELETE',
+    	            contentType: "application/json",
+    	           	success: function (result) {
+    	                alert("Movie Theatre Delete Succesfully");
+    	                
+    	            },
+    	            error: function (error) {
+    	                alert("Error are ocurred");
+    	            }
+    	        });	
+    	 });
+    
+	}
+     ko.applyBindings(new vm());
+    
+	</script> -->  
+	 <script src="/resources/js/admintheatre.js"></script> 
+  </body>
+</html>
